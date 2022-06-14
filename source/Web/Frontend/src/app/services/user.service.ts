@@ -10,7 +10,7 @@ export class AppUserService {
         private readonly http: HttpClient,
         private readonly gridService: GridService) { }
 
-    add = (user: User) => this.http.post<number>("users", user);
+    add = (user: User) => this.http.post<User>("users", user);
 
     delete = (id: number) => this.http.delete(`users/${id}`);
 

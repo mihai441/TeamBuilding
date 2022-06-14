@@ -1,0 +1,28 @@
+<div class="uk-flex uk-flex-center uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-2@m uk-child-width-1-3@l">
+    <fieldset class="uk-fieldset">
+    <form [formGroup]="form">
+            <div class="uk-margin">
+                <app-label for="login" text="Login"></app-label>
+                <app-input-text formControlName="email" text="Login" [autofocus]="true"></app-input-text>
+            </div>
+            <div class="uk-margin">
+                <app-label for="firstname" text="First Name"></app-label>
+                <app-input-text formControlName="firstname" text="First Name" ></app-input-text>
+            </div>
+            <div class="uk-margin">
+                <app-label for="lastname" text="Last Name"></app-label>
+                <app-input-text formControlName="lastname" text="Last Name"></app-input-text>
+            </div>
+    </form>
+    <form [formGroup]="signinform">
+        <div class="uk-margin">
+            <app-label for="password" text="Password"></app-label>
+            <app-input-password formControlName="password" text="Password"></app-input-password>
+        </div>
+        <div class="uk-margin uk-text-center">
+            <app-button text="Add user" [disabled]="form.invalid" (click)="adduser()"></app-button>
+        </div>
+    </form>
+</fieldset>
+
+</div>

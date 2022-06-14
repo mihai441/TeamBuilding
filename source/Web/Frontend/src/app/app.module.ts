@@ -8,6 +8,10 @@ import { AppHttpInterceptor } from "./app.http.interceptor";
 import { ROUTES } from "./app.routes";
 import { AppLayoutsModule } from "./layouts/layouts.module";
 import { AppSettingsService } from "./settings/settings.service";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbThemeModule, NbLayoutModule, NbChatModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -16,7 +20,12 @@ import { AppSettingsService } from "./settings/settings.service";
         BrowserModule,
         HttpClientModule,
         RouterModule.forRoot(ROUTES),
-        AppLayoutsModule
+        AppLayoutsModule,
+        BrowserAnimationsModule,
+        NbThemeModule.forRoot({ name: 'dark' }),
+        NbLayoutModule,
+        NbEvaIconsModule,
+        NbChatModule,
     ],
     providers: [
         { provide: ErrorHandler, useClass: AppErrorHandler },
