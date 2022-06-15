@@ -31,10 +31,14 @@ get currentUser() {
 }
 
 sendMessage(message: string) {
+    const date = new Date().toLocaleString();
+
 this.messages.push({
     text: message,
-    sender: { uid: this.currentUser?.getUid() }
+    sender: { uid: this.currentUser?.getUid()},
+    sentAt: date.split(",")[1]
 });
+console.log(this.messages);
 this.chatService.sendMessage(environment.cometChat.groupId, message);
 }
 
