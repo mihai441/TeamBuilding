@@ -19,12 +19,18 @@
                         ],
                         "scripts": [
                             "node_modules/uikit/dist/js/uikit.min.js",
-                            "node_modules/uikit/dist/js/uikit-icons.min.js"
+                            "node_modules/uikit/dist/js/uikit-icons.min.js",
+                            "node_modules/bootstrap/dist/js/bootstrap.js"
                         ],
                         "styles": [
                             "./node_modules/@nebular/theme/styles/prebuilt/dark.css",
                             "node_modules/uikit/dist/css/uikit.min.css",
-                            "src/styles/style.scss"
+                            "src/styles/style.scss",
+                            "src/styles/chat.scss",
+                            "node_modules/@ctrl/ngx-emoji-mart/picker.css",
+                            "node_modules/bootstrap/dist/css/bootstrap.css",
+                            "src/app/pages/main/chat/chat.css"
+
                         ]
                     },
                     "configurations": {

@@ -16,6 +16,8 @@ export class AppAuthService {
             .subscribe((result: any) => {
                 if (!result || !result.token) { return; }
                 localStorage.setItem("token", result.token);
+                localStorage.setItem("user", result.email);
+
                 this.router.navigate(["/main/home"]);
             });
     }
@@ -28,4 +30,7 @@ export class AppAuthService {
     }
 
     token = () => localStorage.getItem("token");
+
+    user = () => localStorage.getItem("user");
+
 }

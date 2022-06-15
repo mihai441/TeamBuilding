@@ -1,3 +1,3 @@
 namespace Architecture.Model;
 
-public sealed record TokenModel(string Token);
+public sealed record TokenModel(string Token, string Email);

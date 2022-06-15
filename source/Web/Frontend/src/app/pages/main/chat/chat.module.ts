@@ -7,7 +7,6 @@ import { AppInputPasswordModule } from "../../../components/input/password/passw
 import { AppInputTextModule } from "../../../components/input/text/text.module";
 import { AppLabelModule } from "../../../components/label/label.module";
 import { ChatComponent } from "./chat.component";
-import { NbChatModule } from '@nebular/theme';
 
 
 const ROUTES: Routes = [
@@ -24,7 +23,6 @@ const ROUTES: Routes = [
         AppInputPasswordModule,
         AppInputTextModule,
         AppLabelModule,
-        NbChatModule,
     ]
 })
 export class ChatModule { }

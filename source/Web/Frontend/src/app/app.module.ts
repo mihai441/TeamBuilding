@@ -9,8 +9,6 @@ import { ROUTES } from "./app.routes";
 import { AppLayoutsModule } from "./layouts/layouts.module";
 import { AppSettingsService } from "./settings/settings.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbChatModule } from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 
 @NgModule({
@@ -22,10 +20,6 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
         RouterModule.forRoot(ROUTES),
         AppLayoutsModule,
         BrowserAnimationsModule,
-        NbThemeModule.forRoot({ name: 'dark' }),
-        NbLayoutModule,
-        NbEvaIconsModule,
-        NbChatModule,
     ],
     providers: [
         { provide: ErrorHandler, useClass: AppErrorHandler },
