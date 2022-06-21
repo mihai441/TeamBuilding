@@ -3,17 +3,19 @@ import { CometChat } from '@cometchat-pro/chat';
 import { environment } from '../../environments/environment';
 import { AppAuthService } from "src/app/services/auth.service";
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class CometChatService {
   constructor(
-    private readonly appAuthService :AppAuthService,
+    private readonly appAuthService :AppAuthService
   ){};
   
   public currentUser : CometChat.User | null | undefined
   
   appSetting: any;
+
   init() {
         this.appSetting = new CometChat.AppSettingsBuilder()
         .subscribePresenceForAllUsers()
@@ -30,14 +32,14 @@ export class CometChatService {
 
   createUser(){
     var email = this.appAuthService.user() ?? "";
-    var token = this.appAuthService.token()?.substring(0,10) ?? "";
+
+    var token = this.appAuthService?.userId() ?? "";
     var user = new CometChat.User(token);
     user.setName(email);
     CometChat.createUser(user, environment.cometChat.apiKey).then(
         user => {
             console.log("user created", user);
             this.login(user.getUid(),environment.cometChat.apiKey);
-            this.addUserToGroup();
             this.currentUser = user;
         },error => {
             console.log("user Already existent")
@@ -54,7 +56,7 @@ export class CometChatService {
 
   login(userId: string, apiKey: string = environment.cometChat.apiKey) {
     return CometChat.login(userId, apiKey)
-      .then(usr => (this.currentUser = usr), (this.currentUser = null))
+      .then(usr => {this.currentUser = usr; this.addUserToGroup(); }, (this.currentUser = null))
       .then(_ => console.log('User logged in'), console.error);
   }
 

@@ -9,8 +9,8 @@ public sealed class FileService : IFileService
         return files.SaveAsync(directory);
     }
 
-    public Task<BinaryFile> GetAsync(string directory, Guid id)
+    public async Task<string> GetAsync(string directory, Guid id)
     {
-        return BinaryFile.ReadAsync(directory, id);
+        return Path.GetRelativePath(System.AppDomain.CurrentDomain.BaseDirectory, $"Fisiere//{id}.jpg").Replace(@"\", "/");
     }
 }

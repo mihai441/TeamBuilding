@@ -11,4 +11,6 @@ public sealed record UserModel
     public string Email { get; init; }
 
     public AuthModel Auth { get; init; }
+
+    public string AvatarGuid { get; set; }
 }

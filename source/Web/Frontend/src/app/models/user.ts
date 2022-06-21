@@ -6,4 +6,5 @@ export class User {
     id!: number;
     lastName!: string;
     signin!: SignIn;
+    avatarGuid! : string;
 }

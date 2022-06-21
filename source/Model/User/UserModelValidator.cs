@@ -13,4 +13,7 @@ public abstract class UserModelValidator : AbstractValidator<UserModel>
     public void LastName() => RuleFor(user => user.LastName).NotEmpty();
 
     public void Auth() => RuleFor(user => user.Auth).SetValidator(new AuthModelValidator());
+
+    public void AvatarGuid() => RuleFor(user => user.AvatarGuid).NotEmpty();
+
 }

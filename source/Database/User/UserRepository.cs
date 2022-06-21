@@ -3,6 +3,7 @@ using Architecture.Model;
 using DotNetCore.EntityFrameworkCore;
 using DotNetCore.Objects;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Architecture.Database;
 
@@ -18,6 +19,11 @@ public sealed class UserRepository : EFRepository<User>, IUserRepository
     public Task<UserModel> GetModelAsync(long id)
     {
         return Queryable.Where(UserExpression.Id(id)).Select(UserExpression.Model).SingleOrDefaultAsync();
+    }
+
+    public Task<UserModel> GetModelByLoginAsync(string login)
+    {
+        return Queryable.Where(UserExpression.Login(login)).Select(UserExpression.Model).SingleOrDefaultAsync();
     }
 
     public Task<Grid<UserModel>> GridAsync(GridParameters parameters)

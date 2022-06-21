@@ -28,4 +28,7 @@ export class AppFileService {
             });
         });
     }
+
+    get = (id: string) => this.http.get(`files/${id}`, {responseType:"text"});
+
 }

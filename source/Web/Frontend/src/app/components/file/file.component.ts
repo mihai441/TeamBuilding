@@ -1,6 +1,9 @@
 import { Component, Input } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { AppBaseComponent } from "src/app/components/base/base.component";
+import { User } from "src/app/models/user";
+import { AppAuthService } from "src/app/services/auth.service";
+import { AppUserService } from "src/app/services/user.service";
 import { AppFileService } from "./file.service";
 import { FileInfo } from "./fileinfo";
 import { Upload } from "./upload";
@@ -18,7 +21,11 @@ export class AppFileComponent extends AppBaseComponent<FileInfo[]> {
 
     uploads = new Array<Upload>();
 
-    constructor(private readonly appFileService: AppFileService) {
+    constructor(private readonly appFileService: AppFileService,
+                private readonly appAuthService: AppAuthService,
+                private readonly appUserService: AppUserService,
+                ) 
+    {
         super();
     }
 
@@ -36,6 +43,13 @@ export class AppFileComponent extends AppBaseComponent<FileInfo[]> {
                 if (result.id) {
                     this.value.push(new FileInfo(result.id, file.name));
                     this.uploads = this.uploads.filter((x) => x.progress < 100);
+                    var id = Number(this.appAuthService.userId() ?? "");
+                        var userModel = {
+                            id: id,
+                            avatarGuid : result.id
+                        } as User
+                        this.appUserService.update(userModel).subscribe(() => this.appAuthService.updateAvatarGuid(result.id));
+                        alert("Avatar schimbat cu success");
                 }
             });
         }

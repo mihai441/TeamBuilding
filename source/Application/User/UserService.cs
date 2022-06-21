@@ -99,7 +99,7 @@ public sealed class UserService : IUserService
 
         if (user is null) return Result.Success();
 
-        user.Update(model.FirstName, model.LastName, model.Email);
+        user.Update(model.AvatarGuid);
 
         await _userRepository.UpdateAsync(user);
 

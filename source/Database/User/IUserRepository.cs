@@ -16,4 +16,6 @@ public interface IUserRepository : IRepository<User>
     Task<IEnumerable<UserModel>> ListModelAsync();
 
     Task UpdateStatusAsync(User user);
+    Task<UserModel> GetModelByLoginAsync(string login);
+
 }

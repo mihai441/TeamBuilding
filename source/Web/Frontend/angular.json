@@ -18,9 +18,11 @@
                             "src/assets"
                         ],
                         "scripts": [
+                            "node_modules/jquery/dist/jquery.min.js",
                             "node_modules/uikit/dist/js/uikit.min.js",
                             "node_modules/uikit/dist/js/uikit-icons.min.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.js"
+                            "node_modules/bootstrap/dist/js/bootstrap.js",
+                            "node_modules/bootstrap/dist/js/bootstrap.min.js"
                         ],
                         "styles": [
                             "./node_modules/@nebular/theme/styles/prebuilt/dark.css",
@@ -29,7 +31,8 @@
                             "src/styles/chat.scss",
                             "node_modules/@ctrl/ngx-emoji-mart/picker.css",
                             "node_modules/bootstrap/dist/css/bootstrap.css",
-                            "src/app/pages/main/chat/chat.css"
+                            "src/app/pages/main/chat/chat.css",
+                            "src/app/pages/main/coop/coop.scss"
 
                         ]
                     },

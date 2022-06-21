@@ -16,6 +16,9 @@
         "noUnusedParameters": true,
         "removeComments": true,
         "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
         "sourceMap": true,
         "strict": true,
         "target": "ES2017",
@@ -27,7 +30,10 @@
     "angularCompilerOptions": {
         "fullTemplateTypeCheck": true,
         "strictInjectionParameters": true,
-        "strictTemplates": true
+        "strictTemplates": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true
     },
     "files": [
         "src/main.ts",

@@ -15,19 +15,22 @@ public sealed class AuthService : IAuthService
     private readonly IAuthRepository _authRepository;
     private readonly IHashService _hashService;
     private readonly IJwtService _jwtService;
+    private readonly IUserRepository _userRepository;
 
     public AuthService
     (
         IAuthFactory authFactory,
         IAuthRepository authRepository,
         IHashService hashService,
-        IJwtService jwtService
+        IJwtService jwtService,
+        IUserRepository userRepository
     )
     {
         _authFactory = authFactory;
         _authRepository = authRepository;
         _hashService = hashService;
         _jwtService = jwtService;
+        _userRepository = userRepository;
     }
 
     public async Task<IResult<Auth>> AddAsync(AuthModel model)
@@ -64,16 +67,20 @@ public sealed class AuthService : IAuthService
 
         var auth = await _authRepository.GetByLoginAsync(model.Login);
 
+
         if (auth is null) return failResult;
 
         var password = _hashService.Create(model.Password, auth.Salt);
 
         if (auth.Password != password) return failResult;
 
-        return CreateToken(auth);
+        var user = await _userRepository.GetModelByLoginAsync(model.Login);
+
+
+        return CreateToken(auth, user);
     }
 
-    private IResult<TokenModel> CreateToken(Auth auth)
+    private IResult<TokenModel> CreateToken(Auth auth, UserModel user)
     {
         var claims = new List<Claim>();
 
@@ -83,6 +90,6 @@ public sealed class AuthService : IAuthService
 
         var token = _jwtService.Encode(claims);
 
-        return new TokenModel(token,auth.Login).Success();
+        return new TokenModel(token,auth.Login, user).Success();
     }
 }

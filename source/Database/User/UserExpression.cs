@@ -13,11 +13,17 @@ public static class UserExpression
         Id = user.Id,
         FirstName = user.Name.FirstName,
         LastName = user.Name.LastName,
-        Email = user.Email.Value
+        Email = user.Email.Value,
+        AvatarGuid = user.AvatarGuid
     };
 
     public static Expression<Func<User, bool>> Id(long id)
     {
         return user => user.Id == id;
+    }
+
+    public static Expression<Func<User, bool>> Login(string email)
+    {
+        return user => user.Email.Value == email;
     }
 }

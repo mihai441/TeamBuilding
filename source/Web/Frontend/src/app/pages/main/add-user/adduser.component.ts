@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { AppUserService } from "../../../services/user.service";
 import { AppModalService } from "../../../services/modal.service";
 import { Router } from "@angular/router";
+import { User } from "src/app/models/user";
 
 
 
@@ -29,19 +30,19 @@ export class AddUserComponent {
     }
 
     adduser() {
-        var login = this.form.get("email");
-        var password = this.signinform.get("password");
+        var login = this.form.get("email")?.value;
+        var password = this.signinform.get("password")?.value;
         var userModel = {
-            signin: {
+            auth: {
                 login,
-                password
+                password,
+                'roles' : 1
             },
             ...this.form.value
-        }
+        } as User
         console.log(userModel);
-        this.appUserService.add(userModel);
-        this.appModalService.alert("User added succesfully");
+        this.appUserService.add(userModel).subscribe();   
+        this.appModalService.alert("Utilizatorul a fost adaugat cu succes");
         this.router.navigate(["/main/home"]);
-
     }
 }

@@ -2,6 +2,7 @@ using Architecture.Application;
 using Architecture.Model;
 using DotNetCore.AspNetCore;
 using DotNetCore.Objects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Architecture.Web;
@@ -14,7 +15,7 @@ public sealed class UsersController : ControllerBase
 
     public UsersController(IUserService userService) => _userService = userService;
 
-    [HttpPost]
+    [HttpPost("add")]
     public IActionResult Add(UserModel model) => _userService.AddAsync(model).ApiResult();
 
     [HttpDelete("{id}")]

@@ -5,6 +5,11 @@ import { FileInfo } from "src/app/components/file/fileinfo";
     selector: "app-files",
     templateUrl: "./files.component.html"
 })
-export class AppFilesComponent {
+export class AppFilesComponent 
+{
+    constructor(
+    ){
+
+    }
     files = new Array<FileInfo>();
 }

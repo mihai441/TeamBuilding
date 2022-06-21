@@ -17,6 +17,8 @@ export class AppAuthService {
                 if (!result || !result.token) { return; }
                 localStorage.setItem("token", result.token);
                 localStorage.setItem("user", result.email);
+                localStorage.setItem("userId", result.user.id);
+                localStorage.setItem("avatarGuid", result.user.avatarGuid);
 
                 this.router.navigate(["/main/home"]);
             });
@@ -33,4 +35,11 @@ export class AppAuthService {
 
     user = () => localStorage.getItem("user");
 
+    avatarGuid = () => localStorage.getItem("avatarGuid");
+    
+    userId = () => localStorage.getItem("userId");
+
+    updateAvatarGuid(id : string){
+        localStorage.setItem("avatarGuid", id);
+    }
 }

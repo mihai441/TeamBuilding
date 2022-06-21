@@ -27,6 +27,9 @@ public class User : Entity<long>
 
     public Auth Auth { get; private set; }
 
+    public string AvatarGuid { get; set; }
+
+
     public void Activate()
     {
         Status = Status.Active;
@@ -37,9 +40,8 @@ public class User : Entity<long>
         Status = Status.Inactive;
     }
 
-    public void Update(string firstName, string lastName, string email)
+    public void Update(string avatarGuid)
     {
-        Name = new Name(firstName, lastName);
-        Email = new Email(email);
+        AvatarGuid = avatarGuid;
     }
 }
