@@ -23,6 +23,7 @@ export class ChatComponent {
     listenerId = 'Web_App_Listener_Group_ID';
     avatar: any;
     avatarUtilizatori : any;
+    lastAvatarUpdate: any;
 
 
 async ngOnInit(){
@@ -31,14 +32,24 @@ async ngOnInit(){
     this.getMessages().then(_ => this.listenForMessages());
     this.messages = [];
     this.avatarUtilizatori = {};
+    this.lastAvatarUpdate = new Date();
 }    
 
 NoAvatarForUser(id :string){
-    if(this.avatarUtilizatori[id] == null || this.avatarUtilizatori[id] == undefined){
-        this.appUserService.get(Number(id)).subscribe(x=> x.avatarGuid != null ? this.getUserAvatar(id,x.avatarGuid) :  {});
+
+    var diff = new Date().getTime() - this.lastAvatarUpdate.getTime();
+    var secondsPassed = Math.floor(diff/1000);
+    if(this.avatarUtilizatori[id] != null && this.avatarUtilizatori[id] != undefined){
+        return false;
+    }
+    else if(secondsPassed > 0.1){ //daca au trecut mai mult de .1 secunde de la ultimul request
+            this.appUserService.get(Number(id)).subscribe(x=> x.avatarGuid != null ? this.getUserAvatar(id,x.avatarGuid) :  {});
+            this.lastAvatarUpdate = new Date();
+            return true;
+    }
+    else{
         return true;
-      }
-      return false;
+    }
 }
 
 getUserAvatar(id:string, guid:string){
@@ -71,7 +82,6 @@ myMessage(message : any){
 
 async getMessages() {
     console.log("intrare");
-    await delay(1000);
     console.log("asteptare");
 return this.chatService
     .getPreviousMessages(environment.cometChat.groupId)
@@ -91,6 +101,6 @@ ngOnDestroy(): void {
 this.chatService.removeListener(this.listenerId);
 }
 }
-function delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-}
+// function delay(ms: number) {
+//     return new Promise( resolve => setTimeout(resolve, ms) );
+// }
