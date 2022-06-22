@@ -6,7 +6,7 @@
                 <span class="uk-margin-small-left">HOME</span>
             </a>
         </li>
-        <li class="uk-margin-small" routerLinkActive="nav-active">
+        <li class="uk-margin-small" routerLinkActive="nav-active" *ngIf="isAuthorized">
             <a routerLink="/main/list">
                 <span uk-icon="icon: list"></span>
                 <span class="uk-margin-small-left">LISTA UTILIZATORI</span>
@@ -24,7 +24,7 @@
                 <span class="uk-margin-small-left">FISIERE</span>
             </a>
         </li>
-        <li class="uk-margin-small" routerLinkActive="nav-active">
+        <li class="uk-margin-small" routerLinkActive="nav-active" *ngIf="isAuthorized">
             <a routerLink="/main/adduser">
                 <span uk-icon="icon: user"></span>
                 <span class="uk-margin-small-left">ADAUGA UTILIZATOR</span>
